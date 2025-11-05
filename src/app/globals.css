@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 240 10% 3.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 240 10% 3.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 240 10% 3.9%;
+        --primary: 27 91% 58%;
+        /* Brand orange */
+        --primary-foreground: 210 55% 15%;
+        --secondary: 240 4.8% 95.9%;
+        --secondary-foreground: 240 5.9% 10%;
+        --muted: 240 4.8% 95.9%;
+        --muted-foreground: 240 3.8% 46.1%;
+        --accent: 240 4.8% 95.9%;
+        --accent-foreground: 240 5.9% 10%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 240 5.9% 90%;
+        --input: 240 5.9% 90%;
+        --ring: 27 91% 58%;
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        --background: 210 55% 10%;
+        --foreground: 0 0% 98%;
+        --card: 210 55% 13%;
+        --card-foreground: 0 0% 98%;
+        --popover: 240 10% 3.9%;
+        --popover-foreground: 0 0% 98%;
+        --primary: 27 91% 58%;
+        --primary-foreground: 210 55% 15%;
+        --secondary: 240 3.7% 15.9%;
+        --secondary-foreground: 0 0% 98%;
+        --muted: 240 3.7% 15.9%;
+        --muted-foreground: 240 5% 73.1%;
+        --accent: 240 3.7% 15.9%;
+        --accent-foreground: 0 0% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 240 3.7% 15.9%;
+        --input: 240 3.7% 15.9%;
+        --ring: 27 91% 45%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+
+    /* Additional custom styles */
+    h1 {
+        @apply text-4xl font-bold tracking-tight;
+    }
+
+    h2 {
+        @apply text-3xl font-semibold tracking-tight;
+    }
+
+    h3 {
+        @apply text-2xl font-semibold;
+    }
+
+    h4 {
+        @apply text-xl font-medium;
+    }
+}
+
+@layer components {
+    .grade-row {
+        @apply grid grid-cols-12 gap-2 mb-3 items-center;
+    }
+
+    .grade-row-num {
+        @apply col-span-1 text-center font-medium text-muted-foreground;
+    }
+
+    .grade-row-input {
+        @apply col-span-5 sm:col-span-6;
+    }
+
+    .grade-row-weight {
+        @apply col-span-6 sm:col-span-5;
+    }
+
+    .calculator-container {
+        @apply bg-card rounded-lg shadow-md px-2 py-4 sm:p-5 mx-auto max-w-4xl;
+    }
+
+    .result-box {
+        @apply bg-secondary/40 rounded-lg p-4 my-4 text-center;
+    }
+
+    .calculator-tabs {
+        @apply flex flex-col sm:flex-row justify-center gap-2 mb-8;
+    }
+
+    .grade-chart {
+        @apply w-full overflow-hidden rounded-md;
+    }
+
+    .grade-chart-row {
+        @apply flex justify-between py-2 px-4;
+    }
+
+    /* Animation classes */
+    .float-animation {
+        @apply animate-float;
+    }
+
+    /* Tooltip custom styling */
+    .grade-tooltip {
+        @apply max-w-xs bg-popover text-popover-foreground rounded-md shadow-md p-2 text-sm;
+    }
+}
