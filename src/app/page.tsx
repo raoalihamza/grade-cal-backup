@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     title: "Free Grade Calculator - Calculate GPA, Final Grades & Weighted Averages",
     description: "Calculate your grades instantly with our free online calculator tools. Compute weighted averages, final exam grades, GPA, SGPA to CGPA, percentage to CGPA conversion, and more.",
     type: "website",
-    url: "https://grade-calculator-smoky.vercel.app",
+    url: "https://markcalculator.com",
   },
   twitter: {
     card: "summary_large_image",

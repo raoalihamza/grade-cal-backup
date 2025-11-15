@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     description:
       "Convert SGPA to percentage instantly with our free online calculator. Supports 10.0, 5.0, and 4.0 grading scales. Accurate conversion formulas for Indian, US, and international university grading systems.",
     type: "website",
-    url: "https://grade-calculator-smoky.vercel.app/sgpa-to-percentage-calculator",
+    url: "https://markcalculator.com/sgpa-to-percentage-calculator",
   },
   twitter: {
     card: "summary_large_image",

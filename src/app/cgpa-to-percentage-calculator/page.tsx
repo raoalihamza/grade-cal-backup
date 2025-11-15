@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     description:
       "Convert CGPA to percentage instantly with our free online calculator. Supports 10.0, 5.0, 4.0, and Pakistan HEC grading scales. Accurate conversion formulas.",
     type: "website",
-    url: "https://grade-calculator-smoky.vercel.app/cgpa-to-percentage-calculator",
+    url: "https://markcalculator.com/cgpa-to-percentage-calculator",
   },
   twitter: {
     card: "summary_large_image",

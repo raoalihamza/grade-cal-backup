@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     description:
       "Convert percentage to SGPA instantly with our free online calculator. Supports 10.0, 5.0, 4.0, and Pakistan HEC grading scales. Accurate conversion formulas.",
     type: "website",
-    url: "https://grade-calculator-smoky.vercel.app/percentage-to-sgpa-calculator",
+    url: "https://markcalculator.com/percentage-to-sgpa-calculator",
   },
   twitter: {
     card: "summary_large_image",

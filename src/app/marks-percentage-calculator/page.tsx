@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     description:
       "Calculate marks percentage instantly. Free online tool to convert test scores and exam marks to percentages. Supports single and multiple test calculations.",
     type: "website",
-    url: "https://grade-calculator-smoky.vercel.app/marks-percentage-calculator",
+    url: "https://markcalculator.com/marks-percentage-calculator",
   },
   twitter: {
     card: "summary_large_image",

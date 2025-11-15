@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     description:
       "Predict your final score in seconds! Our smart Final Grade Calculator shows exactly what you need to ace your exams—fast, easy, and accurate",
     type: "website",
-    url: "https://grade-calculator-smoky.vercel.app/final-grade-calculator",
+    url: "https://markcalculator.com/final-grade-calculator",
   },
   twitter: {
     card: "summary_large_image",

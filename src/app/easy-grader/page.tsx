@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     description:
       "Instantly calculate test scores and grades with our free Easy Grader calculator. Fast, accurate grading for teachers and students. Supports multiple grading scales.",
     type: "website",
-    url: "https://grade-calculator-smoky.vercel.app/easy-grader",
+    url: "https://markcalculator.com/easy-grader",
   },
   twitter: {
     card: "summary_large_image",

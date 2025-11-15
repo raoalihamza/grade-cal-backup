@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     description:
       "Free CGPA calculator supporting 45+ countries and multiple grading scales. Calculate cumulative GPA, convert to percentage, and track semester performance instantly.",
     type: "website",
-    url: "https://grade-calculator-smoky.vercel.app/cgpa-calculator",
+    url: "https://markcalculator.com/cgpa-calculator",
   },
   twitter: {
     card: "summary_large_image",

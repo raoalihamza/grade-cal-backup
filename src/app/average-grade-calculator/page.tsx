@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     description:
       "Quickly find your average grade with our smart calculator! Fast, accurate, and simple—track your progress and boost your GPA in seconds.",
     type: "website",
-    url: "https://grade-calculator-smoky.vercel.app/average-grade-calculator",
+    url: "https://markcalculator.com/average-grade-calculator",
   },
   twitter: {
     card: "summary_large_image",
