@@ -89,9 +89,6 @@ export const metadata: Metadata = {
   },
   category: "Education",
   classification: "Education",
-  other: {
-    "google-site-verification": "verification-code-here",
-  },
 };
 
 export const viewport = {

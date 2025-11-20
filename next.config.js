@@ -6,6 +6,13 @@ const nextConfig = {
   },
   compress: true,
   swcMinify: true,
+
+  // Fix for build trace stack overflow on Vercel
+  outputFileTracing: true,
+  experimental: {
+    outputFileTracingRoot: undefined,
+  },
+
   async headers() {
     return [
       {
