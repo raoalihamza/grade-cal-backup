@@ -3,6 +3,13 @@ const nextConfig = {
   images: {
     formats: ["image/webp"],
     minimumCacheTTL: 60,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/**",
+      },
+    ],
   },
   compress: true,
   swcMinify: true,

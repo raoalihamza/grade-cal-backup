@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Button } from '@/components/ui/button'
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
   DropdownMenuSeparator,
-} from '@/components/ui/dropdown-menu'
+} from "@/components/ui/dropdown-menu";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '@/components/ui/tooltip'
+} from "@/components/ui/tooltip";
 import {
   Calculator,
   FileSpreadsheet,
@@ -29,9 +29,10 @@ import {
   TrendingUp,
   ArrowDownUp,
   BarChart3,
-  MoreHorizontal
-} from 'lucide-react'
-import { useState } from 'react'
+  MoreHorizontal,
+  BookOpen,
+} from "lucide-react";
+import { useState } from "react";
 
 // Tool definitions with SEO keywords for dropdowns and technical descriptions for popover
 const toolsData = {
@@ -128,200 +129,238 @@ const toolsData = {
 // Category definitions with tools
 const categories = {
   gradeCalculators: {
-    name: 'Grade Calculators',
-    href: '/grade-calculators',
+    name: "Grade Calculators",
+    href: "/grade-calculators",
     tools: [
       toolsData.easyGrader,
       toolsData.averageGrade,
       toolsData.finalGrade,
-      toolsData.marksPercentage
-    ]
+      toolsData.marksPercentage,
+    ],
   },
   gpaCalculators: {
-    name: 'GPA Calculators',
-    href: '/gpa-calculators',
-    tools: [
-      toolsData.gpa,
-      toolsData.cgpa
-    ]
+    name: "GPA Calculators",
+    href: "/gpa-calculators",
+    tools: [toolsData.gpa, toolsData.cgpa],
   },
   cgpaConverters: {
-    name: 'CGPA Converters',
-    href: '/cgpa-converters',
+    name: "CGPA Converters",
+    href: "/cgpa-converters",
     tools: [
       toolsData.percentageToCgpa,
       toolsData.cgpaToPercentage,
-      toolsData.sgpaToCgpa
-    ]
+      toolsData.sgpaToCgpa,
+    ],
   },
   sgpaConverters: {
-    name: 'SGPA Converters',
-    href: '/sgpa-converters',
-    tools: [
-      toolsData.sgpaToPercentage,
-      toolsData.percentageToSgpa
-    ]
-  }
-}
+    name: "SGPA Converters",
+    href: "/sgpa-converters",
+    tools: [toolsData.sgpaToPercentage, toolsData.percentageToSgpa],
+  },
+};
 
-const navigationItems = Object.values(categories)
+const navigationItems = Object.values(categories);
 
 export default function NavigationButtons({ isMobile = false }) {
-    const pathname = usePathname()
-    const [isMoreOpen, setIsMoreOpen] = useState(false)
+  const pathname = usePathname();
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
 
-    // Helper function to check if any tool in a category is active
-    const isCategoryActive = (category: typeof categories[keyof typeof categories]) => {
-        return category.tools.some(tool => tool.href === pathname)
-    }
+  // Helper function to check if any tool in a category is active
+  const isCategoryActive = (
+    category: (typeof categories)[keyof typeof categories]
+  ) => {
+    return category.tools.some((tool) => tool.href === pathname);
+  };
 
-    // Helper function to check if any category has active tool
-    const isAnyToolActive = () => {
-        return Object.values(categories).some(cat => isCategoryActive(cat))
-    }
+  // Helper function to check if any category has active tool
+  const isAnyToolActive = () => {
+    return Object.values(categories).some((cat) => isCategoryActive(cat));
+  };
 
-    if (isMobile) {
-        return (
-            <div className="flex flex-col space-y-2">
-                {/* Categories for mobile */}
-                {Object.values(categories).map((category) => (
-                    <div key={category.name} className="space-y-2">
-                        <h3 className="text-sm font-semibold text-muted-foreground px-3 pt-2">
-                            {category.name}
-                        </h3>
-                        {category.tools.map((tool) => (
-                            <Link key={tool.href} href={tool.href}>
-                                <Button
-                                    variant={pathname === tool.href ? "secondary" : "ghost"}
-                                    className="w-full justify-start text-left"
-                                >
-                                    <tool.icon className="mr-2 h-4 w-4" />
-                                    {tool.label}
-                                    {tool.isNew && (
-                                        <span className="ml-2 rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-primary-foreground">
-                                            New
-                                        </span>
-                                    )}
-                                </Button>
-                            </Link>
-                        ))}
-                    </div>
-                ))}
-            </div>
-        )
-    }
-
+  if (isMobile) {
     return (
-        <TooltipProvider delayDuration={200}>
-            <div className="flex items-center space-x-1">
-                {/* Individual category dropdowns */}
-                {Object.values(categories).map((category) => {
-                    const isActive = isCategoryActive(category)
+      <div className="flex flex-col space-y-2">
+        {/* Categories for mobile */}
+        {Object.values(categories).map((category) => (
+          <div key={category.name} className="space-y-2">
+            <h3 className="text-sm font-semibold text-muted-foreground px-3 pt-2">
+              {category.name}
+            </h3>
+            {category.tools.map((tool) => (
+              <Link key={tool.href} href={tool.href}>
+                <Button
+                  variant={pathname === tool.href ? "secondary" : "ghost"}
+                  className="w-full justify-start text-left"
+                >
+                  <tool.icon className="mr-2 h-4 w-4" />
+                  {tool.label}
+                  {tool.isNew && (
+                    <span className="ml-2 rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-primary-foreground">
+                      New
+                    </span>
+                  )}
+                </Button>
+              </Link>
+            ))}
+          </div>
+        ))}
 
-                    return (
-                        <DropdownMenu key={category.name}>
-                            <DropdownMenuTrigger asChild>
-                                <Button
-                                    variant={isActive ? "secondary" : "ghost"}
-                                    className="flex items-center gap-1"
-                                >
-                                    {category.name}
-                                    <ChevronDown className="h-4 w-4" />
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="start" className="w-64">
-                                {category.tools.map((tool, index) => (
-                                    <div key={tool.href}>
-                                        <Tooltip>
-                                            <TooltipTrigger asChild>
-                                                <DropdownMenuItem asChild>
-                                                    <Link href={tool.href} className="flex items-start gap-3 p-3 cursor-pointer">
-                                                        <tool.icon className="h-4 w-4 mt-0.5 text-muted-foreground" />
-                                                        <div className="flex-1">
-                                                            <div className="flex items-center gap-2">
-                                                                <span className="font-medium">{tool.label}</span>
-                                                                {tool.isNew && (
-                                                                    <span className="rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-primary-foreground">
-                                                                        New
-                                                                    </span>
-                                                                )}
-                                                            </div>
-                                                        </div>
-                                                    </Link>
-                                                </DropdownMenuItem>
-                                            </TooltipTrigger>
-                                            <TooltipContent
-                                                side="top"
-                                                align="end"
-                                                className="max-w-xs font-normal"
-                                            >
-                                                <p>{tool.keyword.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}</p>
-                                            </TooltipContent>
-                                        </Tooltip>
-                                        {index < category.tools.length - 1 && <DropdownMenuSeparator />}
-                                    </div>
-                                ))}
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                    )
-                })}
+        <div className="pt-2 border-t">
+          <Link href="/blog">
+            <Button
+              variant={
+                pathname === "/blog" || pathname.startsWith("/blog/")
+                  ? "secondary"
+                  : "ghost"
+              }
+              className="w-full justify-start text-left"
+            >
+              <BookOpen className="mr-2 h-4 w-4" />
+              Blog
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
-                {/* More menu with all categories in columns */}
-                <DropdownMenu open={isMoreOpen} onOpenChange={setIsMoreOpen}>
-                    <DropdownMenuTrigger asChild>
-                        <Button
-                            variant="ghost"
-                            className="flex items-center gap-1"
-                        >
-                            More
-                            <ChevronDown className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-[800px] p-4">
-                        <div className="grid grid-cols-4 gap-6">
-                            {Object.values(categories).map((category) => (
-                                <div key={category.name} className="space-y-3">
-                                    <Link
-                                        href={category.href}
-                                        onClick={() => setIsMoreOpen(false)}
-                                        className="block"
-                                    >
-                                        <h3 className="font-semibold text-sm text-foreground border-b pb-2 hover:text-primary transition-colors cursor-pointer">
-                                            {category.name}
-                                        </h3>
-                                    </Link>
-                                    <div className="space-y-1">
-                                        {category.tools.map((tool) => (
-                                            <Link
-                                                key={tool.href}
-                                                href={tool.href}
-                                                onClick={() => setIsMoreOpen(false)}
-                                                className="block p-2 rounded-md hover:bg-accent transition-colors group"
-                                            >
-                                                <div className="space-y-1">
-                                                    <div className="flex items-center gap-1.5">
-                                                        <span className="text-sm font-medium group-hover:text-foreground">
-                                                            {tool.label}
-                                                        </span>
-                                                        {tool.isNew && (
-                                                            <span className="rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-medium text-primary-foreground">
-                                                                New
-                                                            </span>
-                                                        )}
-                                                    </div>
-                                                    <p className="text-xs text-muted-foreground">
-                                                        {tool.description}
-                                                    </p>
-                                                </div>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))}
+  return (
+    <TooltipProvider delayDuration={200}>
+      <div className="flex items-center space-x-1">
+        {/* Individual category dropdowns */}
+        {Object.values(categories).map((category) => {
+          const isActive = isCategoryActive(category);
+
+          return (
+            <DropdownMenu key={category.name}>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant={isActive ? "secondary" : "ghost"}
+                  className="flex items-center gap-1"
+                >
+                  {category.name}
+                  <ChevronDown className="h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-64">
+                {category.tools.map((tool, index) => (
+                  <div key={tool.href}>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <DropdownMenuItem asChild>
+                          <Link
+                            href={tool.href}
+                            className="flex items-start gap-3 p-3 cursor-pointer"
+                          >
+                            <tool.icon className="h-4 w-4 mt-0.5 text-muted-foreground" />
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2">
+                                <span className="font-medium">
+                                  {tool.label}
+                                </span>
+                                {tool.isNew && (
+                                  <span className="rounded-full bg-primary px-2 py-0.5 text-xs font-medium text-primary-foreground">
+                                    New
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          </Link>
+                        </DropdownMenuItem>
+                      </TooltipTrigger>
+                      <TooltipContent
+                        side="top"
+                        align="end"
+                        className="max-w-xs font-normal"
+                      >
+                        <p>
+                          {tool.keyword
+                            .split(" ")
+                            .map(
+                              (word) =>
+                                word.charAt(0).toUpperCase() + word.slice(1)
+                            )
+                            .join(" ")}
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                    {index < category.tools.length - 1 && (
+                      <DropdownMenuSeparator />
+                    )}
+                  </div>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          );
+        })}
+
+        {/* Blog Link */}
+        <Link href="/blog">
+          <Button
+            variant={
+              pathname === "/blog" || pathname.startsWith("/blog/")
+                ? "secondary"
+                : "ghost"
+            }
+            className="flex items-center gap-1"
+          >
+            Blogs
+          </Button>
+        </Link>
+
+        {/* More menu with all categories in columns */}
+        <DropdownMenu open={isMoreOpen} onOpenChange={setIsMoreOpen}>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="flex items-center gap-1">
+              More
+              <ChevronDown className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-[800px] p-4">
+            <div className="grid grid-cols-4 gap-6">
+              {Object.values(categories).map((category) => (
+                <div key={category.name} className="space-y-3">
+                  <Link
+                    href={category.href}
+                    onClick={() => setIsMoreOpen(false)}
+                    className="block"
+                  >
+                    <h3 className="font-semibold text-sm text-foreground border-b pb-2 hover:text-primary transition-colors cursor-pointer">
+                      {category.name}
+                    </h3>
+                  </Link>
+                  <div className="space-y-1">
+                    {category.tools.map((tool) => (
+                      <Link
+                        key={tool.href}
+                        href={tool.href}
+                        onClick={() => setIsMoreOpen(false)}
+                        className="block p-2 rounded-md hover:bg-accent transition-colors group"
+                      >
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-sm font-medium group-hover:text-foreground">
+                              {tool.label}
+                            </span>
+                            {tool.isNew && (
+                              <span className="rounded-full bg-primary px-1.5 py-0.5 text-[10px] font-medium text-primary-foreground">
+                                New
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-xs text-muted-foreground">
+                            {tool.description}
+                          </p>
                         </div>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
-        </TooltipProvider>
-    )
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+    </TooltipProvider>
+  );
 }
